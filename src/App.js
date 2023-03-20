@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home'
 import Stats from './components/Stats'
 import Header from './components/Header'
+import Upload from './components/Upload'
 
 import './App.css';
 
@@ -14,7 +15,7 @@ function App() {
     <Routes>
      <Route path="/" element={ <Home /> }/>
      <Route path="stats" element={ <Stats /> }/>
-     <Route path="upload"/>
+     <Route path="upload" element={ <Upload /> }/>
    </Routes>
    </div>
   );
