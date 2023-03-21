@@ -11,15 +11,30 @@ export default function Upload(){
 
     }
 
-    const onSubmission=()=>{
-        
+    const onSubmission=(e)=>{
+        //File validation
+        e.preventDefault()
+         var reader = new FileReader();
+         
+          reader.readAsText(selectedFile);
 
+        reader.onload = function() {
+            console.log(reader.result);
+        };
+
+        //Upload data or just save locally
+
+        reader.onerror = function() {
+            console.log(reader.error);
+        };
+        
     }
 
     return(
         <div className="upload">
             <h1>Upload</h1>
-            <input type="file" accept=".csv" onChange={onFileChange}></input>
+            <form onSubmit={onSubmission}>
+                <input type="file" accept=".csv" onChange={onFileChange}></input>
             {isSelected ? (
 				<div>
 					<p>Filename: {selectedFile.name}</p>
@@ -33,7 +48,9 @@ export default function Upload(){
 			) : (
 				<p>Select a file to show details</p>
 			)}
-            <button type="submit" onSubmit={onSubmission}>Submit</button>
+            <button type="submit" >Submit</button>
+            </form>
+        
         </div>
     )
 }
