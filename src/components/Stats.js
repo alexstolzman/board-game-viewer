@@ -1,11 +1,14 @@
-
+import { useLocation } from "react-router-dom";
 
 export default function Stats(){
+    const {state} = useLocation();
+    const {file}=state
 
     return(
-        <h1>Stats</h1>
-        //Hours played(includes pie chart)
-        //Top game
+       <div>
+         <h1>Stats</h1>
+        <p>{file}</p>
+       </div>
         
     )
 }

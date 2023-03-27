@@ -1,8 +1,11 @@
 import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function Upload(){
     const [isSelected, setSelected]=useState(false)
     const [selectedFile, setSelectedFile]=useState()
+
+    let navigate = useNavigate(); 
 
 
     const onFileChange=(event)=>{
@@ -12,6 +15,8 @@ export default function Upload(){
     }
 
     const onSubmission=(e)=>{
+        let path = `..//stats`; 
+
         //File validation
         e.preventDefault()
          var reader = new FileReader();
@@ -19,14 +24,22 @@ export default function Upload(){
           reader.readAsText(selectedFile);
 
         reader.onload = function() {
-            console.log(reader.result);
+            //console.log(reader.result);
+            navigate(path, { state: {file: reader.result}});
         };
 
         //Upload data or just save locally
+        //Go to stats page
 
         reader.onerror = function() {
             console.log(reader.error);
         };
+
+        
+    
+    
+
+
         
     }
 

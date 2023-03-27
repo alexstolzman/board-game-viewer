@@ -5,7 +5,6 @@ export default function NavBar(){
         <div>
             <flex-box>
                 <NavLink to="/">Home</NavLink>
-                <NavLink to="stats">Stats</NavLink>
                 <NavLink to="upload">Upload</NavLink>
             </flex-box>
         </div>
