@@ -39,8 +39,17 @@ $background-color_1: #282c34;
 .navItem {
   padding: 5px;
   text-decoration: none;
+  &:hover {
+	color: navy;
+  }
 }
 
 body{
   background-color: bisque
+}
+
+.submitBtn{
+	&:hover {
+		background: lightgray
+	}
 }

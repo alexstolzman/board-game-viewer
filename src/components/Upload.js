@@ -61,7 +61,7 @@ export default function Upload(){
 			) : (
 				<p>Select a file to show details</p>
 			)}
-            <button type="submit" >Submit</button>
+            <button className="submitBtn" type="submit" >Submit</button>
             </form>
         
         </div>
