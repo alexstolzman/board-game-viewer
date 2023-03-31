@@ -4,8 +4,16 @@ import { useEffect, useState } from "react";
 export default function Stats(){
     const {state} = useLocation();
     const {file}=state
+    const [games, setGames]=useState([])
 
     useEffect(()=>{
+      const data=JSON.parse(file)
+      
+      for(let obj in data){
+        console.log(data[obj].Game)
+
+      }
+
       
     })
 

@@ -26,7 +26,7 @@ export default function Upload(){
           reader.readAsText(selectedFile);
 
         reader.onload = function() {
-            console.log(reader.result);
+           // console.log(reader.result);
             var csv=reader.result
             var lines=csv.split("\n")
             var result=[]
