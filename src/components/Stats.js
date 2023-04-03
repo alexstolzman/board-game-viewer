@@ -4,18 +4,27 @@ import { useEffect, useState } from "react";
 export default function Stats(){
     const {state} = useLocation();
     const {file}=state
-    const [games, setGames]=useState([])
+    const [gameData, setGameData]=useState(new Map())
+    let games=new Map()
 
     useEffect(()=>{
       const data=JSON.parse(file)
       
       for(let obj in data){
-        console.log(data[obj].Game)
+        //Set number of plays per game
+        if(games.has(data[obj].Game)){
+          games.set(data[obj].Game, games.get(data[obj].Game)+1)
+        }
+        else{
+          games.set(data[obj].Game, 0)
+        }
+        games.delete(undefined)
 
       }
 
+      console.log(games)
       
-    })
+    }, [])
 
     return(
        <div>
