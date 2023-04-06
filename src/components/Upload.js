@@ -45,19 +45,10 @@ export default function Upload(){
             navigate(path, { state: {file: result}});
         };
 
-        //Upload data or just save locally
-        //Go to stats page
-
         reader.onerror = function() {
             console.log(reader.error);
         };
-
-        
     
-    
-
-
-        
     }
 
     return(

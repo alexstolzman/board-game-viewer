@@ -10,11 +10,13 @@ export default function Stats(){
     const [games, setGames]=useState({
       names: [],
       plays: [],
-      playTime: []
+      playTime: [],
+      wins: []
     })
 
     const [playDataPie, setPlayDataPie]=useState([])
     const [timeDataPie, setTimeDataPie]=useState([])
+    const [winData, setWinData]=useState([])
 
 
     useEffect(()=>{
@@ -26,42 +28,42 @@ export default function Stats(){
             const index=games.names.indexOf(data[obj].Game)
             newValues.plays[index]++
             newValues.playTime[index]=parseInt(newValues.playTime[index])+parseInt(data[obj].Time)
+            if(data[obj].Outcome==="Won")
+              newValues.wins[index]++
+
             setGames(newValues)
 
           }
-          else if(data[obj].Game!=undefined){
+          else if(data[obj].Game!==undefined){
             const newValues={...games}
             newValues.names.push(data[obj].Game)
             newValues.plays.push(1)
             newValues.playTime.push(parseInt(data[obj].Time))
+            if(data[obj].Outcome==="Won")
+              newValues.wins.push(1)
+            else if(data[obj].Outcome==="Lost")
+              newValues.wins.push(0)
             setGames(newValues)
           }
 
-
-        //Set number of plays per game
-        // if(games.has(data[obj].Game)){
-        //   games.set(data[obj].Game, games.get(data[obj].Game)+1)
-        // }
-        // else{
-        //   games.set(data[obj].Game, 0)
-        // }
-        // games.delete(undefined)
-
       }
 
-      //console.log(games)
+
       var pieChart=[]
       var time=[]
+      var wins=[]
       pieChart.push(["Game", "Number of Plays"])
       time.push(["Game","Time Played"])
+      wins.push(["Game", "Wins"])
           for(let i=0;i<games.names.length;i++){
             pieChart.push([games.names[i],games.plays[i]])
             time.push([games.names[i],games.playTime[i]])
+            wins.push([games.names[i],games.wins[i]])
           }
           setPlayDataPie(pieChart)
           setTimeDataPie(time)
+          setWinData(wins)
 
-      //console.log(games)
       
     }, [])
 
@@ -74,6 +76,15 @@ const options2 = {
   title: "Time Played(Min)",
   is3D: true,
 }
+
+const options3={
+  legend: { position: "top" }
+}
+
+const diffdata = {
+  old: playDataPie,
+  new: winData,
+};
 
     return(
        <div>
@@ -94,6 +105,18 @@ const options2 = {
       width={"100%"}
       height={"400px"}
     />
+
+<label>
+  Wins/losses
+
+   <Chart
+      chartType="BarChart"
+      width="100%"
+      height="400px"
+      diffdata={diffdata}
+      options={options3}
+    />
+</label>
 
      
        </div>
