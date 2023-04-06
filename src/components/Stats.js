@@ -14,6 +14,8 @@ export default function Stats(){
       wins: []
     })
 
+    const [totalTime, setTotalTime]=useState(0)
+    const [totalPlays, setTotalPlays]=useState(0)
     const [playDataPie, setPlayDataPie]=useState([])
     const [timeDataPie, setTimeDataPie]=useState([])
     const [winData, setWinData]=useState([])
@@ -23,6 +25,8 @@ export default function Stats(){
       const data=JSON.parse(file)
       
       for(let obj in data){
+        if(data[obj].Game!==undefined)
+          setTotalPlays(prev=>prev+=1)
           if(games.names.includes(data[obj].Game)){
             const newValues={...games}
             const index=games.names.indexOf(data[obj].Game)
@@ -32,6 +36,7 @@ export default function Stats(){
               newValues.wins[index]++
 
             setGames(newValues)
+            setTotalTime(prev=>prev+=parseInt(data[obj].Time))
 
           }
           else if(data[obj].Game!==undefined){
@@ -44,6 +49,7 @@ export default function Stats(){
             else if(data[obj].Outcome==="Lost")
               newValues.wins.push(0)
             setGames(newValues)
+            setTotalTime(prev=>prev+=parseInt(data[obj].Time))
           }
 
       }
@@ -91,35 +97,40 @@ const diffdata = {
 
     return(
        <div>
-         <h1>Stats</h1>
-
-        <Chart
-          chartType="PieChart"
-          data={playDataPie}
-          options={options1}
-          width={"100%"}
-          height={"400px"}
-        />
-
-        <Chart
-          chartType="PieChart"
-          data={timeDataPie}
-          options={options2}
-          width={"100%"}
-          height={"400px"}
-        />
-
-        <label>
-          Wins/losses
+        <h1>Stats</h1>
+        
+        <div className="overview">
+          <h5>Total Plays: {totalPlays} plays</h5>
+          <h5>Total Time Played: {(totalTime/60).toFixed(2)} hours</h5>
+        </div>
 
           <Chart
-              chartType="BarChart"
-              width="100%"
-              height="400px"
-              diffdata={diffdata}
-              options={options3}
-            />
-        </label>
+            chartType="PieChart"
+            data={playDataPie}
+            options={options1}
+            width={"100%"}
+            height={"400px"}
+          />
+
+          <Chart
+            chartType="PieChart"
+            data={timeDataPie}
+            options={options2}
+            width={"100%"}
+            height={"400px"}
+          />
+
+          <label>
+            Wins/losses
+
+            <Chart
+                chartType="BarChart"
+                width="100%"
+                height="400px"
+                diffdata={diffdata}
+                options={options3}
+              />
+          </label>
 
      
        </div>
