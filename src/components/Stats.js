@@ -70,15 +70,18 @@ export default function Stats(){
   const options1 = {
   title: "Number of Plays",
   is3D: true,
+  backgroundColor: "bisque"
 }
 
 const options2 = {
   title: "Time Played(Min)",
   is3D: true,
+  backgroundColor: "bisque"
 }
 
 const options3={
-  legend: { position: "top" }
+  legend: { position: "top" },
+  backgroundColor: "bisque"
 }
 
 const diffdata = {
@@ -90,33 +93,33 @@ const diffdata = {
        <div>
          <h1>Stats</h1>
 
-           <Chart
-      chartType="PieChart"
-      data={playDataPie}
-      options={options1}
-      width={"100%"}
-      height={"400px"}
-    />
+        <Chart
+          chartType="PieChart"
+          data={playDataPie}
+          options={options1}
+          width={"100%"}
+          height={"400px"}
+        />
 
-      <Chart
-      chartType="PieChart"
-      data={timeDataPie}
-      options={options2}
-      width={"100%"}
-      height={"400px"}
-    />
+        <Chart
+          chartType="PieChart"
+          data={timeDataPie}
+          options={options2}
+          width={"100%"}
+          height={"400px"}
+        />
 
-<label>
-  Wins/losses
+        <label>
+          Wins/losses
 
-   <Chart
-      chartType="BarChart"
-      width="100%"
-      height="400px"
-      diffdata={diffdata}
-      options={options3}
-    />
-</label>
+          <Chart
+              chartType="BarChart"
+              width="100%"
+              height="400px"
+              diffdata={diffdata}
+              options={options3}
+            />
+        </label>
 
      
        </div>

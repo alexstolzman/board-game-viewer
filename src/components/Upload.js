@@ -54,8 +54,9 @@ export default function Upload(){
     return(
         <div className="upload">
             <h1>Upload</h1>
+            <p>Upload .csv file with the following attributes: Game, Time, and Outcome. Time should be in minutes and Outcome should have "Won" or "Lost"</p>
             <form onSubmit={onSubmission}>
-                <input type="file" accept=".csv" onChange={onFileChange}></input>
+                <input type="file" accept=".csv, text/csv" onChange={onFileChange}></input>
             {isSelected ? (
 				<div>
 					<p>Filename: {selectedFile.name}</p>
