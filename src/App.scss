@@ -49,12 +49,14 @@ body{
 }
 
 .submitBtn{
+	margin: 10px;
+
 	&:hover {
 		background: lightgray
 	}
 }
 
-#homeNote {
+.note {
 	text-decoration-color: rgb(108, 104, 104);
 	color:rgb(108, 104, 104);
 }
@@ -72,4 +74,23 @@ ul {
 
 }
 
+
+dl dt{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+dl dd{
+    display: inline-block;
+    margin: 0px 10px;
+    padding-bottom: 0;
+    vertical-align: middle;
+}
+dl dt.blue{
+    background: rgb(51, 102, 204);
+}
+dl dt.white{
+    background: rgb(238, 238, 238);
+}
 

@@ -57,7 +57,7 @@ export default function Upload(){
             <ul>
                 <li>Must have the columns <b>Game</b>,<b> Time</b>, and <b>Outcome</b></li>
                 <li>Time column should be in minutes</li>
-                <li>Outcome column should have <b>'Won'</b>,<b> 'Lost'</b>, or <b>'N/A'</b></li>
+                <li>Outcome column should have <b>'Won'</b> for wins</li>
             </ul>
         </div>
             <form onSubmit={onSubmission}>
