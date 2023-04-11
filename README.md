@@ -1,3 +1,10 @@
+A React project I created to show a visual representation of the stats from my spreadheet of board game plays. I used React Router to make this a multi-page application. This application allows you to upload a .csv file(with the specified format) and outputs a visual representation of that data. There is also an option to download the stats page for easy sharing.
+
+
+![bgstats](https://user-images.githubusercontent.com/47224184/231022375-034fa500-4107-4e3d-86e1-1bd582ef9586.png)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
